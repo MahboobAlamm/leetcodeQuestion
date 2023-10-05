@@ -33,18 +33,18 @@ class Main {
 
 
 class Solution {
-    public static int equilibriumPoint(long nums[], int n) {
-        int sum = 0;
-        for(int i=0;i<nums.length;i++){
-            sum += nums[i];
+    public static int equilibriumPoint(long arr[], int n) {
+        // Your code here
+        long sum = 0;
+        for(int i=0;i<n;i++){
+            sum += arr[i];
         }
-        
-        int curr = 0;
-        for(int i=0;i<nums.length;i++){
-            sum -= nums[i];
-            if(sum == curr)
+        long lsum =0;
+        for(int i=0;i<n;i++){
+            sum -= arr[i];
+            if(sum == lsum)
                 return i+1;
-            curr += nums[i];
+            lsum += arr[i];
         }
         
         return -1;
