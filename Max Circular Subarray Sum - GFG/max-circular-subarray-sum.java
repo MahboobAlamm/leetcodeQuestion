@@ -26,30 +26,40 @@ class Main {
 
 // } Driver Code Ends
 
+
 class Solution{
-    static int maxSum(int nums[]){
-        int res = nums[0];
-        int maxEnding = nums[0];
-        for(int i=1;i<nums.length;i++){
-            maxEnding = (int)Math.max(nums[i], nums[i]+maxEnding);
-            res = (int)Math.max(res, maxEnding);
+    static int normalSubarraySum(int arr[], int n){
+        int res = arr[0];
+        int curr = arr[0];
+        
+        for(int i=1;i<n;i++){
+            curr = Math.max(arr[i], arr[i]+curr);
+            res = Math.max(res, curr);
         }
+        
         return res;
     }
+    
     static int circularSubarraySum(int a[], int n) {
-        int maxNormal = maxSum(a);
-        if(maxNormal < 0)
-            return maxNormal;
+    
+        // Your code here
+        int max_normal = normalSubarraySum(a,n);
         
+        if(max_normal < 0)
+            return max_normal;
+            
         int sum = 0;
-        for(int i=0;i<a.length;i++){
+        
+        for(int i=0;i<n;i++){
             sum += a[i];
             a[i] = -a[i];
         }
         
-        int maxCircular = sum + maxSum(a);
+        int max_circular = sum + normalSubarraySum(a, n);
         
-        return (int)Math.max(maxNormal,maxCircular);
+        return Math.max(max_normal, max_circular);
+        
     }
+    
 }
 
