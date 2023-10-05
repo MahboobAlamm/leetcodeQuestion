@@ -29,21 +29,23 @@ import java.util.*;
 // User function Template for Java
 
 class Solution {
+    int binary(int arr[], int l, int h, int k){
+        if(l>h)
+            return -1;
+            
+        int mid = (l+h)/2;
+        
+        if(arr[mid] == k)
+            return mid;
+        else if(arr[mid] > k)
+            return binary(arr, l, mid-1, k);
+        else
+            return binary(arr, mid+1, h, k);
+    }
     int binarysearch(int arr[], int n, int k) {
         int l = 0;
         int h = n-1;
         
-        while(l<=h){
-            int mid = (l+h)/2;
-            
-            if(arr[mid] == k)
-                return mid;
-            else if(arr[mid] > k)
-                h = mid - 1;
-            else 
-                l = mid + 1;
-        }
-        
-        return -1;
+        return binary(arr, l, h, k);
     }
 }
