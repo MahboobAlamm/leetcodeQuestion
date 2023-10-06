@@ -29,27 +29,38 @@ class Main
 
 class Solution
 {
-    public static boolean find3Numbers(int nums[], int n, int X) { 
-        Arrays.sort(nums);
+    public static boolean find3Numbers(int arr[], int n, int x) { 
+        Arrays.sort(arr);
+        ArrayList<ArrayList<Integer>> a = new ArrayList<>();
         
-        for(int i=0;i<nums.length-2;i++){
-            if(i!=0 && nums[i]==nums[i-1])
+        for(int i=0;i<arr.length-2;i++){
+            if(i>0 && arr[i]==arr[i-1])
                 continue;
+            
             int beg = i+1;
-            int end = nums.length-1;
-            while(beg<end){
-                if(end!=nums.length-1 && nums[end]==nums[end+1]){
+            int end = n-1;
+            
+            while(beg < end){
+                if(end < n-1 && arr[i] == arr[i+1]){
                     end--;
                     continue;
                 }
-                if(nums[i]+nums[beg]+nums[end]==X)
-                    return true;
-                else if(nums[i]+nums[beg]+nums[end] > X)
+                
+                if(arr[i] + arr[beg] + arr[end] == x){
+                    ArrayList<Integer> s = new ArrayList<>();
+                    s.add(arr[i]); s.add(arr[beg]); s.add(arr[end]);
+                    a.add(s);
+                    beg++; 
                     end--;
-                else
+                }
+                else if(arr[i] + arr[beg] + arr[end] > x){
+                    end--;
+                }
+                else{
                     beg++;
+                }
             }
         }
-        return false;
+        return a.size()>0;
     }
 }
