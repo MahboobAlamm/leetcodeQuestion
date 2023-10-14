@@ -33,23 +33,21 @@ class GfG
 
 class Solution{
     boolean isSubSequence(String A, String B){
-        if(A.length() < B.length()){
-            return isSubSequence(B, A);
-        }
         
+        int i = 0;
+        int j = 0;
+        if(A.length() > B.length())
+            return false;
         
-        int i=0,j=0;
-        while(i<A.length() && j<B.length()){
+        while(i < A.length() && j < B.length()){
             if(A.charAt(i) == B.charAt(j)){
-                j++;
+                i++;
             }
-            
-            i++;
+            j++;
         }
         
-        if(j==B.length()){
+        if(i==A.length())
             return true;
-        }
         return false;
     }
 }
