@@ -22,39 +22,40 @@ class GFG {
 }
 // } Driver Code Ends
 
+
+// User function Template for Java
+
 class Solution {
-    boolean areSame(int x[], int y[]){
-        for(int i=0;i<x.length;i++){
-            if(x[i]!=y[i])
+    boolean isSame(int a[], int b[]){
+        for(int i=0;i<256;i++){
+            if(a[i] != b[i])
                 return false;
         }
+        
         return true;
     }
 
     int search(String pat, String txt) {
-        if(pat.length() > txt.length()){
-            return -1;
-        }
-        int patt[] = new int[265];
-        int txtt[] = new int[265];
+        int ct[] = new int[256];
+        int cp[] = new int[256];
         
+        if(pat.length() > txt.length())
+            return 0;
+            
         for(int i=0;i<pat.length();i++){
-            patt[pat.charAt(i)]++;
-            txtt[txt.charAt(i)]++;
+            ct[txt.charAt(i)]++;
+            cp[pat.charAt(i)]++;
         }
-        int count=0;
-        
-        for(int i=pat.length();i<txt.length();i++){
-            if(areSame(patt, txtt)){
+        int count = 0;
+        for(int i = pat.length(); i< txt.length(); i++){
+            if(isSame(ct, cp))
                 count++;
-            }
-            txtt[txt.charAt(i-pat.length())]--;
-            txtt[txt.charAt(i)]++;
+                
+            ct[txt.charAt(i)]++;
+            ct[txt.charAt(i-pat.length())]--;
         }
-        
-        if(areSame(txtt, patt)){
+        if(isSame(ct,cp))
             count++;
-        }
         
         return count;
     }
