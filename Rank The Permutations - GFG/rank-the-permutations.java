@@ -22,44 +22,37 @@ class GFG
 
 // } Driver Code Ends
 
-
-//User function Template for Java
-
 class Solution
 {
-    long factorial(int n){
-        long fact = 1;
-        for(int i = 2;i<=n;i++){
-            fact = fact*i;
-        }
-        
-        return fact;
-    }
-    public long findRank(String s)
-    {
-        int n = s.length();
-        int chr[] = new int[256];
-        for(int i=0;i<n;i++){
-            chr[s.charAt(i)]++;
-        }
-        
-        for(int i=1;i<256;i++){
-            chr[i] = chr[i]+chr[i-1];
-        }
-        
-        
-        long mul = factorial(n);
-        
+    public long fact(int n){
         long res = 1;
-        for(int i=0;i<n-1;i++){
-            mul = mul / (n-i);
-            
-            res += chr[s.charAt(i)-1] * mul;
-            
-            for(int j=s.charAt(i);j<256;j++){
-                chr[j]--;
-            }
+        for(int i=1;i<=n;i++){
+            res = res * i;
         }
         return res;
+    }
+    public long findRank(String str)
+    {
+        long res =0;
+        int n =str.length();
+        long mul = fact(n);
+        int count[] = new int[256];
+        
+        for(int i=0;i<n;i++){
+            count[str.charAt(i)]++;
+        }
+        for(int i=1;i<256;i++){
+            count[i] = count[i]+ count[i-1];
+        }
+        
+        for(int i=0;i<n-1;i++){
+            mul = mul/(n-i);
+            res += count[str.charAt(i)-1] * mul;
+            for(int j = str.charAt(i); j< 256;j++){
+                count[j]--;
+            }
+        }
+        
+        return res + 1;
     }
 }
