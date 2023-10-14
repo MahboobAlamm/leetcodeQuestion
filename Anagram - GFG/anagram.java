@@ -36,23 +36,26 @@ class GFG {
 
 class Solution
 {    
-    //Function is to check whether two strings are anagram of each other or not.
-    public static boolean isAnagram(String a,String b)
-    {
-        if(a.length()!=b.length())
-            return false;
-            
-        int arr[] = new int[256];
-        
-        for(int i=0;i<a.length();i++){
-            arr[a.charAt(i)]++;
-            arr[b.charAt(i)]--;
-        }
-        
+    public static boolean isSame(int[] a, int[] b){
         for(int i=0;i<256;i++){
-            if(arr[i]!=0)
+            if(a[i] != b[i])
                 return false;
         }
         return true;
+    }
+    public static boolean isAnagram(String a,String b)
+    {
+        if(a.length() != b.length())
+            return false;
+            
+        int c[] = new int[256];
+        int d[] = new int[256];
+        for(int i=0;i<a.length();i++){
+            c[a.charAt(i)]++;
+            d[b.charAt(i)]++;
+        }
+        
+        return isSame(c, d);
+        
     }
 }
