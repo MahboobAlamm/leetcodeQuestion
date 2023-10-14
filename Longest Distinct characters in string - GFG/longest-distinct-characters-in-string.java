@@ -22,22 +22,22 @@ class GFG
 
 // } Driver Code Ends
 
-
-//User function Template for Java
-
 class Solution{
-    static int longestSubstrDistinctChars(String S){
-        int chr[] = new int[256];
-        Arrays.fill(chr, -1);
-        
+    static int longestSubstrDistinctChars(String str){
+        int n = str.length();
+        int i=0;
         int res = 0;
-        int curr = 0;
-        for(int i=0;i<S.length();i++){
-            curr = Math.max(curr, chr[S.charAt(i)]+1);
+        
+        int prev[] = new int[256];
+        Arrays.fill(prev, -1);
+        
+        for(int j=0;j<n;j++){
+            i = Math.max(i, prev[str.charAt(j)]+1);
             
-            int maxEnding = i - curr + 1;
-            res = Math.max(res , maxEnding);
-            chr[S.charAt(i)] = i;
+            int maxEnd = j-i+1;
+            res = Math.max(res, maxEnd);
+            
+            prev[str.charAt(j)] = j;
         }
         
         return res;
