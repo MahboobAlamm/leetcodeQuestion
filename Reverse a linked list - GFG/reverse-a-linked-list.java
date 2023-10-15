@@ -49,11 +49,7 @@ class GFG{
 } 
    
 // } Driver Code Ends
-
-
-//function Template for Java
-/* linked list node class:
-class Node {
+/*class Node {
     int data;
     Node next;
     Node(int value) {
@@ -61,18 +57,19 @@ class Node {
     }
 }
 */
-
 class Solution
 {
     Node reverseList(Node head)
     {
         Node prev = null;
+        if(head == null || head.next == null)
+            return head;
         
         while(head != null){
-            Node save = head.next;
+            Node temp = head.next;
             head.next = prev;
             prev = head;
-            head = save;
+            head = temp;
         }
         
         return prev;
