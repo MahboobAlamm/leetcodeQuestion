@@ -52,35 +52,32 @@ class GFG{
 } 
 
 // } Driver Code Ends
-
-
 /*class Node
     {
         int data;
         Node next;
         Node(int d) {data = d; next = null; }
     }*/
-
-// sortedInsert method should return the head of the modified linked list.
 class Solution {
     Node sortedInsert(Node head, int key) {
         Node n = new Node(key);
-        if(head == null )
+        if(head == null){
             return n;
-        if(key < head.data){
+        } 
+        else if( key < head.data){
             n.next = head;
             head = n;
             return head;
-        }    
-        
-        Node curr = head;
-        Node save = null;
-        while(curr.next !=null  && curr.next.data < key){
-            curr = curr.next;
         }
-        n.next = curr.next;
-        curr.next = n;
-        
-        return head;
+        else {
+            Node curr = head;
+            while(curr.next != null && curr.next.data < key){
+                curr = curr.next;
+            }
+            
+            n.next = curr.next;
+            curr.next = n;
+            return head;
+        }
     }
 }
