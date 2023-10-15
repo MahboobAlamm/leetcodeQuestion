@@ -83,32 +83,35 @@ public class LinkedList_Element_From_Last
 	
 	
 // } Driver Code Ends
-
+/*class Node
+{
+    int data;
+    Node next;
+    Node(int d) {data = d; next = null; }
+}
+*/
 class Solution
 {
     int getNthFromLast(Node head, int n)
     {
-    	if(head == null)
-    	    return -1;
-    	    
-    	int count = 1;
+        if(head == null)
+            return -1;
+            
     	Node first = head;
-    	
-    	while(count < n && first !=null){
-    	    first = first.next;
-    	    count++;
-    	    //System.out.println(count+" "+first.data);
-    	}
-    	if(first == null) return -1;
-    	
-    	Node second = head;
-    	//System.out.println();
-    	while(first.next != null){
-    	    first = first.next;
-    	    second = second.next;
-    	    //System.out.println(first.data+" "+second.data);
+    	Node last = head;
+    	int i=1;
+    	while(i <= n && last != null){
+    	    i++;
+    	    last = last.next;
     	}
     	
-    	return second.data;
+    	if(n >= i){
+    	    return -1;
+    	}
+    	while(last != null){
+    	    last = last.next;
+    	    first = first.next;
+    	}
+    	return first.data;
     }
 }
