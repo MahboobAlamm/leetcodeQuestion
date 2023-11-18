@@ -30,12 +30,33 @@ class GFG {
 
 // } Driver Code Ends
 
+
+//User function Template for Java
+
 class Solution{
-    public static int partition(int[] arr, int l, int h){
-        int pivot = arr[h];
+    public static int kthSmallest(int[] arr, int l, int r, int k) 
+    { 
+        while(l <= r){
+            
+            int p = partition(arr, l, r);
+            
+            if(p == k-1){
+                return arr[p];
+            }
+            else if( p > k-1){
+                r = p-1;
+            } else {
+                l = p+1;
+            }
+        }
+        return -1;
+    } 
+    
+    public static int partition(int arr[], int l, int h){
+        int pivot  = arr[h];
         
         int i = l-1;
-        for(int j=l;j<=h-1;j++){
+        for(int j = l;j<=h-1;j++){
             if(arr[j] < pivot){
                 i++;
                 int temp = arr[i];
@@ -43,27 +64,11 @@ class Solution{
                 arr[j] = temp;
             }
         }
-        i++;
-        int temp = arr[i];
-        arr[i] = arr[h];
+        
+        int temp =arr[i+1];
+        arr[i+1] = arr[h];
         arr[h] = temp;
         
-        return i;
+        return i+1;
     }
-    public static int kthSmallest(int[] arr, int l, int h, int k) 
-    { 
-        
-        while(l <= h){
-            int p = partition(arr, l, h);
-            
-            if(p == k-1)
-                return arr[p];
-            else if(p > k-1)
-                h = p-1;
-            else 
-                l = p+1;
-        }
-        return -1;
-        
-    } 
 }
