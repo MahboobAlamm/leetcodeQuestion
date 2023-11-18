@@ -49,29 +49,38 @@ class GFG{
 } 
    
 // } Driver Code Ends
-/*class Node {
+
+
+//function Template for Java
+
+/* linked list node class:
+
+class Node {
     int data;
     Node next;
     Node(int value) {
         this.value = value;
     }
 }
+
 */
+
 class Solution
 {
+    //Function to reverse a linked list.
     Node reverseList(Node head)
     {
         Node prev = null;
-        if(head == null || head.next == null)
-            return head;
+        Node curr = head;
         
-        while(head != null){
-            Node temp = head.next;
-            head.next = prev;
-            prev = head;
-            head = temp;
+        while(curr != null){
+            Node temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
         }
         
         return prev;
+        
     }
 }
