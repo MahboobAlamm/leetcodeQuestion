@@ -61,23 +61,21 @@ class GFG{
 class Solution {
     Node sortedInsert(Node head, int key) {
         Node n = new Node(key);
-        if(head == null){
-            return n;
-        } 
-        else if( key < head.data){
+        
+        if(head == null || head.data > key){
             n.next = head;
             head = n;
             return head;
         }
-        else {
-            Node curr = head;
-            while(curr.next != null && curr.next.data < key){
-                curr = curr.next;
-            }
-            
-            n.next = curr.next;
-            curr.next = n;
-            return head;
+        
+        Node curr = head;
+        while(curr.next != null && curr.next.data < key){
+            curr = curr.next;
         }
+        
+        n.next = curr.next;
+        curr.next = n;
+        
+        return head;
     }
 }
