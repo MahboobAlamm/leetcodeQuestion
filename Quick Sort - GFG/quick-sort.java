@@ -38,31 +38,30 @@ class Solution
     {
         // code here
         if(low < high){
-            int mid = (low+high)/2;
-            
             int p = partition(arr, low, high);
             
-            quickSort(arr, low, p-1);
+            quickSort(arr, low, p);
             quickSort(arr, p+1, high);
         }
     }
     static int partition(int arr[], int low, int high)
     {
         // your code here
-        int pivot = arr[high];
-        int i = low-1;
-        for(int j=low;j<high;j++){
-            if(arr[j] < pivot){
+        int pivot = arr[low];
+        int i =low-1;
+        int j = high+1;
+        while(true){
+            do{
                 i++;
-                int temp = arr[i];
-                arr[i]  = arr[j];
-                arr[j] = temp;
-            }
+            }while(arr[i] < pivot);
+            do{
+                j--;
+            }while(arr[j] > pivot);
+            if(j <= i)
+                return j;
+            int temp =arr[j];
+            arr[j] = arr[i];
+            arr[i]  =temp;
         }
-        int temp = arr[high];
-        arr[high] = arr[i+1];
-        arr[i+1] = temp;
-        return i+1;
-        
     } 
 }
