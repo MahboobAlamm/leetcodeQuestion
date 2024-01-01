@@ -55,24 +55,32 @@ class Driverclass
 }
 // } Driver Code Ends
 
+
+//User function Template for Java
+
 class Solution
 {   
+    // arr[] : the input array
+    // N : size of the array arr[]
+    
+    //Function to return length of longest subsequence of consecutive integers.
 	static int findLongestConseqSubseq(int arr[], int N)
 	{
-	   Set<Integer> h = new HashSet<>();
-	   for(int i=0;i<N;i++){
-	       h.add(arr[i]);
+	   // add your code here
+	   Set<Integer> s = new HashSet<>();
+	   for(int x : arr){
+	       s.add(x);
 	   }
+	   
 	   int res = 0;
-	   for(int x : h){
-	       int curr = 0;
-	       if(h.contains(x-1)==false){
-	           while(h.contains(x + curr)){
+	   for(int x : arr){
+	       int curr = 1;
+	       if(s.contains(x-1)==false){
+	           while(s.contains(x+curr)){
 	               curr++;
 	           }
 	       }
-	       
-	       res = Math.max(curr, res);
+	       res = Math.max(res, curr);
 	   }
 	   return res;
 	}
