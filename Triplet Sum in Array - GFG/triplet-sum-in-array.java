@@ -30,37 +30,23 @@ class Main
 class Solution
 {
     public static boolean find3Numbers(int arr[], int n, int x) { 
-        Arrays.sort(arr);
-        ArrayList<ArrayList<Integer>> a = new ArrayList<>();
-        
-        for(int i=0;i<arr.length-2;i++){
-            if(i>0 && arr[i]==arr[i-1])
+    
+       Arrays.sort(arr);
+       for(int i=0;i<n-2;i++){
+           if(i>0 && arr[i] == arr[i-1])
                 continue;
-            
-            int beg = i+1;
-            int end = n-1;
-            
-            while(beg < end){
-                if(end < n-1 && arr[i] == arr[i+1]){
-                    end--;
-                    continue;
-                }
-                
-                if(arr[i] + arr[beg] + arr[end] == x){
-                    ArrayList<Integer> s = new ArrayList<>();
-                    s.add(arr[i]); s.add(arr[beg]); s.add(arr[end]);
-                    a.add(s);
-                    beg++; 
-                    end--;
-                }
-                else if(arr[i] + arr[beg] + arr[end] > x){
-                    end--;
-                }
-                else{
-                    beg++;
+            int low = i+1;
+            int high = n-1;
+            while(low < high){
+                if(arr[i]+arr[low]+arr[high] == x)
+                    return true;
+                else if(arr[i]+arr[low]+arr[high] > x){
+                    high--;
+                } else {
+                    low++;
                 }
             }
-        }
-        return a.size()>0;
+       }
+       return false;
     }
 }
